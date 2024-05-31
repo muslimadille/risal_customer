@@ -13,5 +13,8 @@ static const Color WHITE =Color(0xffFFFFFF);
 static const Color BLACK =Color(0xff0F0F0F);
 static const Color GREY =Color(0xffC5C6CC);
 static const Color GREY_DARK =Color(0xff8F9098);
+static const Color BG_COLOR =Color(0xffF3F3F3);
+
+
 
 }

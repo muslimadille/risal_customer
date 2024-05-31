@@ -7,6 +7,7 @@ import 'package:risal_customer/applications/mainApplication.dart';
 import 'package:risal_customer/common/helpers/device_info_details.dart';
 import 'package:risal_customer/common/helpers/local_storage.dart';
 import 'package:risal_customer/common/helpers/routs_helper.dart';
+import 'package:risal_customer/common/utils/app_colors.dart';
 import 'package:risal_customer/features/spalsh/view/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -70,11 +71,11 @@ class _MyAppState extends State<MyApp> {
     ]);
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        key:UniqueKey(),
+        //key:UniqueKey(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.BLUE_DARK),
           fontFamily: GoogleFonts.getFont('Cairo').fontFamily,),
         navigatorKey: AppNavigator().navigatorKey,
         onGenerateRoute: onGenerateRoute,
@@ -90,11 +91,11 @@ class _MyAppState extends State<MyApp> {
               data: MediaQuery.of(context).copyWith(
                 textScaleFactor: 1.0,
               ), //set desired text scale factor here
-              child: child??SplashScreen(),
+              child: child??const SplashScreen(),
             );
           },
         ),
-        home: SplashScreen(),
+        home: const SplashScreen(),
       );
     });
   }
