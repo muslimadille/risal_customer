@@ -67,7 +67,9 @@ class _LoginScreenState extends State<LoginScreen> with LoginHelper {
           ),
           CustomBtn(
             title: 'login_btn_title'.translate,
-            onClick: (){},
+            onClick: (){
+              onLoginClick();
+            },
             ),
           const Expanded(child: SizedBox()),
           Text(

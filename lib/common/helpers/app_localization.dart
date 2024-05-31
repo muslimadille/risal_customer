@@ -67,7 +67,11 @@ class AppLocalization{
     "confirm_new_password":"Confirm new password",
     "login_btn_title":"Get start",
     "change_password_btn_title":"Set password",
-    "forget_password_title":"Edit password"
+    "forget_password_title":"Edit password",
+    "confirm_email_title":"Confirm E-mail",
+    "pos_tab":"POs",
+    "orders_tab":"Orders",
+    "more_tab":"More"
 
 };
   static const Map<String, dynamic> AR = {
@@ -83,7 +87,12 @@ class AppLocalization{
     "confirm_new_password":"تأكيد كلمة المرور",
     "login_btn_title":"ابدأ",
     "change_password_btn_title":"تأكيد",
-    "forget_password_title":"تعديل كلمة المرور"
+    "forget_password_title":"تعديل كلمة المرور",
+    "confirm_email_title":"تأكيد البريد الإلكترروني",
+    "pos_tab":"POs",
+    "orders_tab":"الطلبات",
+    "more_tab":"المزيد"
+
 
   };
 }
