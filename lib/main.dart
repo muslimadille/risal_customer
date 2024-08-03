@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        key:UniqueKey(),
+        //key:UniqueKey(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,

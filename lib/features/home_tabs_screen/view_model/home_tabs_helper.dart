@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:risal_customer/features/more/view/screens/more_screen.dart';
 
 
 mixin HomeTabsHelper{
@@ -14,7 +15,7 @@ mixin HomeTabsHelper{
   final List<Widget> screens=[
     Container(),
     Container(),
-    Container(),
+    MoreScreen(),
   ];
 
 
