@@ -15,5 +15,14 @@ static const String MORE_LOGOUT_IC="assets/images/more_logout_ic.svg";
 static const String MORE_PRIVACY_IC="assets/images/avatar.svg";
 static const String MORE_TERMS_IC="assets/images/more_terms_and_condiitions_ic.svg";
 
+static const String POS_TERM_IC="assets/images/pos_item_ic.svg";
+static const String POS_ITEM_TOTAL_IC="assets/images/pos_item_total_ic.svg";
+static const String POS_ITEM_DOWN_PAYMENT_IC="assets/images/pos_item_downPaymennt_ic.svg";
+
+
+
+
+
+
 
 }

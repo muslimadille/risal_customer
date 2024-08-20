@@ -13,6 +13,7 @@ class MoreItemWidget extends StatelessWidget {
     return Row(children: [
       SvgPicture.asset(suffix),
       Expanded(child: Text(title)),
+
       Visibility(
         visible:(prefix??"").isNotEmpty,
           child: SvgPicture.asset("")),

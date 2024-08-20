@@ -93,7 +93,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       setState(() {
                         showPassword=!showPassword;
                       });
-                    }, child: SvgPicture.asset(AppImages.SHOW_PASSWORD_IC,color:showPassword?AppColors.BLUE:null ,),),
+                    }, child: SvgPicture.asset(AppImages.SHOW_PASSWORD_IC,color:showPassword?AppColors.BLUE_DARK:null ,),),
                   ),
                 )
               ],

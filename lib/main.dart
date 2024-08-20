@@ -35,6 +35,7 @@ void main() async{
   ));
   EasyLoading.instance
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..backgroundColor=Colors.transparent
     ..loadingStyle = EasyLoadingStyle.custom
     ..maskType = EasyLoadingMaskType.black
     ..indicatorSize = 45.0

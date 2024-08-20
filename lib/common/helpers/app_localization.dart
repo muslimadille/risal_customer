@@ -1,15 +1,19 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:risal_customer/common/utils/app_data.dart';
 
 import 'local_storage.dart';
 
 final FlutterLocalization localization = FlutterLocalization.instance;
+late final ValueNotifier<bool> languageNotifier;
+
 tr(String key){
   return AppLocalization.translate(key);
 }
 get isArabic=>AppLocalization.isArabic;
+
 class AppLocalization{
 
   static AppLocalization? _instance;
@@ -21,7 +25,8 @@ class AppLocalization{
   }
 
    onInit() async{
-    await localization.init(
+     languageNotifier=ValueNotifier<bool>(isArabic);
+     await localization.init(
       mapLocales: [
         const MapLocale('en', AppLocalization.EN),
         const MapLocale('ar', AppLocalization.AR),
@@ -39,6 +44,7 @@ class AppLocalization{
     AppData.CURRENT_LANG=code=="ar"?"en":"ar";
     LocalStorage().putInBox(key: AppData.LANG_STORAGE_KEY, value: AppData.CURRENT_LANG);
     localization.translate(AppData.CURRENT_LANG);
+    languageNotifier.value=isArabic;
   }
    _initLocal(){
     AppData.CURRENT_LANG=LocalStorage().getFromBox(key: AppData.LANG_STORAGE_KEY)??"en";
@@ -71,7 +77,14 @@ class AppLocalization{
     "confirm_email_title":"Confirm E-mail",
     "pos_tab":"POs",
     "orders_tab":"Orders",
-    "more_tab":"More"
+    "more_tab":"More",
+    "pos_screen_title":"Purchase Orders",
+    "pos_num":"# PO_Num : ",
+    "active":"Active",
+    "delivered":"Delivered",
+    "Total":"Total: ",
+    "SAR":"SAR",
+    "down_payment":"Down Payment: "
 
 };
   static const Map<String, dynamic> AR = {
@@ -91,7 +104,17 @@ class AppLocalization{
     "confirm_email_title":"تأكيد البريد الإلكترروني",
     "pos_tab":"POs",
     "orders_tab":"الطلبات",
-    "more_tab":"المزيد"
+    "more_tab":"المزيد",
+    "pos_screen_title":"طلبات الشراء",
+    "pos_num":"# رقم الطلب : ",
+    "active":"نشط",
+    "delivered":"تم التوصيل",
+    "Total":"إجمالي: ",
+    "SAR":"ر.س",
+    "down_payment":"دفعة مبدئية: "
+
+
+
 
 
   };

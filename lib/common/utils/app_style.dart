@@ -15,4 +15,16 @@ class AppStyle{
         )
     ),
   );
+  static ButtonStyle BTN_STYLE_IACTIVE =ElevatedButton.styleFrom(
+    elevation: 0,
+    backgroundColor:AppColors.GREY,
+    padding:  EdgeInsets.symmetric(vertical:1.h),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side:  const BorderSide(
+          width: 1.0,
+          color: AppColors.GREY,
+        )
+    ),
+  );
 }

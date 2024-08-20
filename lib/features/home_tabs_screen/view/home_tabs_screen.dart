@@ -39,7 +39,9 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> with HomeTabsHelper {
         body:ValueListenableBuilder<int>(
             valueListenable: selectedIndex,
             builder: (context, value, child){
-            return Column(children: [
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
               Expanded(child: screens[value]),
               Container(
                 width:  double.infinity,
