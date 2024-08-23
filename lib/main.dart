@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:risal_customer/applications/mainApplication.dart';
 import 'package:risal_customer/common/helpers/device_info_details.dart';
 import 'package:risal_customer/common/helpers/local_storage.dart';
+import 'package:risal_customer/common/helpers/notification_hadler.dart';
 import 'package:risal_customer/common/helpers/routs_helper.dart';
 import 'package:risal_customer/common/utils/app_colors.dart';
 import 'package:risal_customer/features/spalsh/view/splash_screen.dart';
@@ -26,7 +28,10 @@ void main() async{
             DeviceInfoDetails().getDeviceInfoMap()
           ]
       );
-    })
+    }),
+    Firebase.initializeApp().then((value) async {
+      await NotificationHandle().initNotifications();
+    }),
   ]);
   HiveHelper().initAdaptors();
   runApp(MultiProvider(
@@ -34,7 +39,7 @@ void main() async{
     child: const MyApp(),
   ));
   EasyLoading.instance
-    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..indicatorType = EasyLoadingIndicatorType.ripple
     ..backgroundColor=Colors.transparent
     ..loadingStyle = EasyLoadingStyle.custom
     ..maskType = EasyLoadingMaskType.black
@@ -72,7 +77,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        //key:UniqueKey(),
+        //key:GlobalKey(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
@@ -85,18 +90,18 @@ class _MyAppState extends State<MyApp> {
           Locale("ar"),
         ],
         localizationsDelegates: localization.localizationsDelegates,
-        locale: AppLocalization.isArabic ?  Locale("ar") :  Locale("en"),
+        locale: AppLocalization.isArabic ?  const Locale("ar") :  const Locale("en"),
         builder: EasyLoading.init(
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(
                 textScaleFactor: 1.0,
               ), //set desired text scale factor here
-              child: child??const SplashScreen(),
+              child: child?? SplashScreen(),
             );
           },
         ),
-        home: const SplashScreen(),
+        home:  SplashScreen(),
       );
     });
   }

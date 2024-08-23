@@ -14,10 +14,10 @@ class ApiCodes {
   static const String REST_VERIFY_OTP='reset/otp';
   static const String REST_SET_NEW_PASSWORD='reset/password';
   ///PROFILE
-  static const String PROFILE_DATA_='reset/password';
+  static const String PROFILE_DATA='user/profile';
   /// pos
   static const String GET_POS_LIST_='user/pos';
-  static const String GET_POS_details_='user/pos/';//takes op id
+  static const String GET_POS_details='user/pos/';//takes op id
  /// orders
   static const String GET_ORDERS_LIST='user/orders';
   static const String GET_ORDERS_DETAILS='user/order/';

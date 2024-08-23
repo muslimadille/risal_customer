@@ -73,7 +73,7 @@ class AppLocalization{
     "confirm_new_password":"Confirm new password",
     "login_btn_title":"Get start",
     "change_password_btn_title":"Set password",
-    "forget_password_title":"Edit password",
+    "forget_password_title":"Forget password",
     "confirm_email_title":"Confirm E-mail",
     "pos_tab":"POs",
     "orders_tab":"Orders",
@@ -84,9 +84,43 @@ class AppLocalization{
     "delivered":"Delivered",
     "Total":"Total: ",
     "SAR":"SAR",
-    "down_payment":"Down Payment: "
+    "down_payment":"Down Payment: ",
+    "search":"Search",
+    "clear_filter_bt_title":"Clear Filter ",
+    "filter":"Filter",
+    "STATUS":"Status",
+    "DONE":"Done",
+    "select_satus":"Select status",
+    "change_lang":"Change language",
+    "orders_screen_title":"Orders",
+    "help_center_btn_title":"Help Center",
+    "terms_btn_title":"Terms & Conditions",
+    "privacy_btn_title":"Privacy Policy",
+    "log_out":"Logout",
+    "No_delevery_address":"There is no delivery address",
+    "quantity":"Qty: ",
+    "duration":"Duration: ",
+    "chek_our":"Check our",
+    "profile":"Profile",
+    "profile_name":"Name",
+    "profile_phone":"Phone number",
+    "profile_cr":"CR",
+    "profile_address":"Address",
+    "profile_contact_person":"Contact person",
+    "edite_password":"Edite password",
+    "edite_password_title":"Edite password",
+    "old_password_title":"Old password",
+    "forget_password_text":"Forget password?",
+    "receive_service_btn":"Receive the service",
+    "report_issue_btn":"Report an issue",
+    "confirm":"Confirm",
+    "confirm_title":"Confirm your delivery note",
+    "confirm_subtitle":"Please confirm that you received the order"
 
-};
+
+
+
+  };
   static const Map<String, dynamic> AR = {
     "login_title":"تسجيل الدخول",
     "Email":"البريد  الإلكتروني",
@@ -100,7 +134,7 @@ class AppLocalization{
     "confirm_new_password":"تأكيد كلمة المرور",
     "login_btn_title":"ابدأ",
     "change_password_btn_title":"تأكيد",
-    "forget_password_title":"تعديل كلمة المرور",
+    "forget_password_title":"نسيت كلمة المرور",
     "confirm_email_title":"تأكيد البريد الإلكترروني",
     "pos_tab":"POs",
     "orders_tab":"الطلبات",
@@ -111,11 +145,38 @@ class AppLocalization{
     "delivered":"تم التوصيل",
     "Total":"إجمالي: ",
     "SAR":"ر.س",
-    "down_payment":"دفعة مبدئية: "
-
-
-
-
+    "down_payment":"دفعة مبدئية: ",
+    "search":"بحث",
+    "clear_filter_bt_title":"مسح الفلتر",
+    "filter":"فلتر",
+    "STATUS":"الحالة",
+    "DONE":"تم",
+    "select_satus":"قم باختيار الحالة",
+    "change_lang":"تغيير اللغة",
+    "orders_screen_title":"الطلبات",
+    "help_center_btn_title":"مركز المساعدة",
+    "terms_btn_title":"الشروط والأحكام",
+    "privacy_btn_title":"سياسة الخصوصية",
+    "log_out":"تسجيل الخروج",
+    "No_delevery_address":"لا يوجد  عنوان توصيل",
+    "quantity":"الكمية: ",
+    "duration":"المدة: ",
+    "chek_our":"تعرف علي",
+    "profile":"الملف  الشخصي",
+    "profile_name":"الاسم",
+    "profile_phone":"رقم الجوال",
+    "profile_cr":"CR",
+    "profile_address":"العنوان",
+    "profile_contact_person":"صاحب رقم التواصل",
+    "edite_password":"تعديل كلمة المرور",
+    "edite_password_title":"تعديل كلمة المرور",
+    "old_password_title":"كلمة المرور القديمة",
+    "forget_password_text":"نسيت كلمة المرور؟",
+    "receive_service_btn":"استقبال الخدمة",
+    "report_issue_btn":"الابلاغ عن مشكلة",
+    "confirm":"تأكيد",
+    "confirm_title":"تأكيد التوصيل",
+    "confirm_subtitle":"الرجاء تأكيد استلام الطلب"
 
   };
 }

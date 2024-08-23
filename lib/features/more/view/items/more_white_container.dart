@@ -14,7 +14,7 @@ class MoreWhiteContainer extends StatelessWidget {
       margin:EdgeInsets.symmetric(horizontal: 6.w) ,
       decoration:const BoxDecoration(
           color: AppColors.WHITE,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
           boxShadow:[
             BoxShadow(
                 color:AppColors.GREY,
@@ -23,6 +23,7 @@ class MoreWhiteContainer extends StatelessWidget {
             )
           ]
       ),
+      child: body,
     );
   }
 }

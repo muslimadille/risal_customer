@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:risal_customer/common/extentions/translat_extention.dart';
 import 'package:risal_customer/common/helpers/app_localization.dart';
+import 'package:risal_customer/common/helpers/app_navigator.dart';
 import 'package:risal_customer/common/utils/app_colors.dart';
+import 'package:risal_customer/common/utils/app_routes.dart';
 import 'package:risal_customer/common/utils/app_style.dart';
 import 'package:risal_customer/common/widgets/custom_btn.dart';
 import 'package:risal_customer/common/widgets/custom_text_field.dart';
@@ -30,10 +32,12 @@ class _LoginScreenState extends State<LoginScreen> with LoginHelper {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset:false,
       backgroundColor: AppColors.BG_COLOR,
       body: Form(
         key: formKey,
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 5.h,
@@ -75,15 +79,19 @@ class _LoginScreenState extends State<LoginScreen> with LoginHelper {
               },
             ),
             SizedBox(
-              height: 0.3.h,
+              height: 1.h,
             ),
-            Text(
-              "password_hint".translate,
-              textAlign:TextAlign.center,
-              style: TextStyle(fontSize: 9.5.sp, fontWeight: FontWeight.w500, color: AppColors.BLUE_DARK),
-            ),
+            SizedBox(height: 1.h,),
+            InkWell(
+              onTap: (){
+                AppNavigator().push(routeName: AppRoutes.FORGET_PASSWORD_SCREEN_ROUTE);
+              },
+              child: Padding(
+                padding:  EdgeInsets.symmetric(horizontal:4.w),
+                child: Text("forget_password_text".translate,style: TextStyle(fontSize: 12.sp,color:AppColors.GREY_DARK ),),
+              ),),
             SizedBox(
-              height: 4.h,
+              height: 8.h,
             ),
             ValueListenableBuilder<bool>(
               valueListenable: loginButtonState,
@@ -97,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> with LoginHelper {
                   );
               }
             ),
-            SizedBox(height:30.h,),
+            Expanded(child: SizedBox()),
             Center(
               child: Text(
                 "terms_title_1".translate,

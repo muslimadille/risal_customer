@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:risal_customer/common/helpers/app_navigator.dart';
+import 'package:risal_customer/common/helpers/local_storage.dart';
 import 'package:risal_customer/common/helpers/network_helper/network_request.dart';
+import 'package:risal_customer/common/utils/app_data.dart';
 import 'package:risal_customer/common/utils/app_routes.dart';
+import 'package:risal_customer/common/utils/storage_keys.dart';
 import 'package:risal_customer/features/auth/model/login_model.dart';
 import 'package:risal_customer/features/auth/model/user_model.dart';
 import 'package:risal_customer/features/auth/repository/auth_repo.dart';
+import 'package:risal_customer/features/more/view/screens/info_screen.dart';
 
 mixin LoginHelper{
   final AuthRepo authRepo=AuthRepo();
@@ -34,19 +38,22 @@ mixin LoginHelper{
   }
 
   onTermsClick(){
-    AppNavigator().push(routeName: AppRoutes.CONFIRM_EMAIL_SCREEN_ROUTE);
+    AppNavigator().push(routeName: AppRoutes.INFO_SCREEN_ROUT,arguments: InfoScreenArgument(title: "terms_btn_title", content: "dgsgsdgdsgsdgsdgsdgsdgsdgsd"));
   }
   onLoginClick()async{
     try{
       final response=await authRepo.login(
-          password: '1111qqqq',
-          email: "mobile@test.com");
+          password: passwordController.text,
+          email: emailController.text);
       LoginModel loginModel = loginModelFromJson(jsonEncode(response.data));
+      AppData.user_name=loginModel.payload.name;
+      AppData.user_name=loginModel.payload.phone;
+      LocalStorage().putInBox(key: StorageKeys.TOKEN, value: loginModel.payload.apiToken);
       NetworkRequest().dio.options.headers['Authorization'] = "Bearer ${loginModel.payload.apiToken}";
         if(loginModel.payload.firstLogin==1){
           AppNavigator().push(routeName: AppRoutes.CHANGE_PASSWORD_SCREEN_ROUTE);
         }else{
-          AppNavigator().push(routeName: AppRoutes.HOME_TABS_SCREEN_ROUTE);
+          AppNavigator().pushAndRemoveAll(routeName: AppRoutes.HOME_TABS_SCREEN_ROUTE);
         }
     }catch (error) {
       rethrow;

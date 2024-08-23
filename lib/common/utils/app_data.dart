@@ -33,6 +33,12 @@ class AppData{
   static const String hive_Model_details_Types="hive_Model_details_Types";
   static const String hive_Models_list_Types="hive_Models_list_Types";
   static const String hive_most_watched="hive_MOST_WATCHED";
+  ///user
+  static  String user_name="user";
+  static  String user_phone="user";
+
+
+
 
 
 

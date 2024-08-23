@@ -4,20 +4,21 @@ import 'package:sizer/sizer.dart';
 
 class MoreWhiteContainer extends StatelessWidget {
   final Widget body;
-  const MoreWhiteContainer({super.key, required this.body});
+  final EdgeInsets? margin;
+  const MoreWhiteContainer({super.key, required this.body,this.margin});
 
   @override
   Widget build(BuildContext context) {
     return  Container(
       padding: EdgeInsets.symmetric(vertical: 2.h,horizontal: 5.w),
-      margin:EdgeInsets.symmetric(horizontal: 6.w) ,
-      decoration:const BoxDecoration(
+      margin:margin??EdgeInsets.symmetric(horizontal: 6.w) ,
+      decoration: BoxDecoration(
           color: AppColors.WHITE,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
           boxShadow:[
             BoxShadow(
-                color:AppColors.GREY,
-                blurRadius: 10,
+                color:AppColors.GREY.withOpacity(0.5),
+                blurRadius: 5,
                 spreadRadius: 0
             )
           ]

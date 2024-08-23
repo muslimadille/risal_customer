@@ -15,6 +15,8 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? inputType;
   final Function(String)? onChange;
   final bool?isPassword;
+  final bool?enabled;
+  final  Color?color;
   const CustomTextField({
     this.isPassword,
     required this.controller,
@@ -22,6 +24,8 @@ class CustomTextField extends StatefulWidget {
     this.title,
     this.inputType,
     this.onChange,
+    this.enabled=true,
+    this.color,
     super.key});
 
   @override
@@ -40,11 +44,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
         children: [
           Visibility(
             visible: (widget.title??"").isNotEmpty,
-              child: Text(tr(widget.title??""),style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.w500,color: Colors.black),)),
+              child: Text(tr(widget.title??""),style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.w500,color: (widget.enabled??true)?Colors.black:AppColors.GREY_DARK),)),
           SizedBox(height:0.6.h),
           Container(
             decoration: BoxDecoration(
-                color: Colors.transparent,
+                color: widget.color??Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
                 border: const Border.fromBorderSide(
                     BorderSide(
@@ -58,10 +62,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               children: [
                 Expanded(
                   child: TextFormField(
+                    enabled: widget.enabled??true,
                     controller:widget.controller ,
                     style: TextStyle(
                       decorationThickness:0,
-                      color: Colors.black,
+                      color: (widget.enabled??true)?Colors.black:AppColors.GREY_DARK,
                       fontSize:12.sp,
                       fontWeight: FontWeight.w500,
                     ),
@@ -76,6 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       focusedErrorBorder:InputBorder.none,
                       disabledBorder: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
+
                       isDense:true,
                     ),
                     keyboardType: widget.inputType ,

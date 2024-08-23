@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:risal_customer/common/helpers/network_helper/api_codes.dart';
 import 'package:risal_customer/common/helpers/network_helper/models/network_request_model.dart';
 import 'package:risal_customer/common/helpers/network_helper/network_request.dart';
-
+import 'package:risal_customer/common/helpers/notification_hadler.dart';
 import '../../../common/helpers/network_helper/models/network_exception_model.dart';
 import '../../../common/helpers/network_helper/models/network_request_enum.dart';
 
@@ -15,7 +15,8 @@ class AuthRepo{
             networkType: NetworkRequestEnum.post,
             data: {
               "password":password,
-              "email":email
+              "email":email,
+              "fcm_token":NotificationHandle().fcmToken
             },
             showProgress: true,
             dismissProgress: true,

@@ -8,7 +8,7 @@ class HomeTabItem extends StatelessWidget {
   final bool isSelected;
   final Function onClick;
 
-  const HomeTabItem({required  this.onClick,required this.isSelected,required this.title,required  this.icon,super.key});
+   HomeTabItem({required  this.onClick,required this.isSelected,required this.title,required  this.icon,super.key});
 
   @override
   Widget build(BuildContext context) {

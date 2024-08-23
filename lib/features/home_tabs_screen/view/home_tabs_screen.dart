@@ -19,6 +19,7 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> with HomeTabsHelper {
 
   @override
   void initState() {
+    onInit(widget.selectedIndex??0);
     super.initState();
   }
   @override
@@ -35,6 +36,7 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> with HomeTabsHelper {
 
       },
       child: Scaffold(
+        resizeToAvoidBottomInset:false,
         backgroundColor: AppColors.BG_COLOR,
         body:ValueListenableBuilder<int>(
             valueListenable: selectedIndex,

@@ -15,6 +15,18 @@ class AppStyle{
         )
     ),
   );
+  static ButtonStyle BORDER_BTN_STYLE =ElevatedButton.styleFrom(
+    elevation: 0,
+    backgroundColor:Colors.transparent,
+    padding:  EdgeInsets.symmetric(vertical:1.h),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side:  const BorderSide(
+          width: 1.0,
+          color: AppColors.BLUE_DARK,
+        )
+    ),
+  );
   static ButtonStyle BTN_STYLE_IACTIVE =ElevatedButton.styleFrom(
     elevation: 0,
     backgroundColor:AppColors.GREY,

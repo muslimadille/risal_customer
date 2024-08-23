@@ -9,7 +9,7 @@ class LoginModel {
   final int code;
   final bool error;
   final dynamic message;
-  final Payload payload;
+  final User payload;
 
   LoginModel({
     required this.code,
@@ -22,7 +22,7 @@ class LoginModel {
     code: json["code"]??0,
     error: json["error"],
     message: json["message"],
-    payload: Payload.fromJson(json["payload"]),
+    payload: User.fromJson(json["payload"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -33,7 +33,7 @@ class LoginModel {
   };
 }
 
-class Payload {
+class User {
   final int id;
   final String name;
   final String email;
@@ -50,7 +50,7 @@ class Payload {
   final String role;
   final String apiToken;
 
-  Payload({
+  User({
     required this.id,
     required this.name,
     required this.email,
@@ -68,7 +68,7 @@ class Payload {
     required this.apiToken,
   });
 
-  factory Payload.fromJson(Map<String, dynamic> json) => Payload(
+  factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"]??-1,
     name: json["name"]??"",
     email: json["email"]??"",
