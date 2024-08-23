@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "991280596030",
+    "project_id": "risal-2dfdf",
+    "storage_bucket": "risal-2dfdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991280596030:android:acfccf202678370abcbd6f",
+        "android_client_info": {
+          "package_name": "com.example.risal_customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzM4a-_z-WdsAAz9sgWybcfY2xflrLJgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
