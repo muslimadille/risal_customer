@@ -49,23 +49,18 @@ class OrderListItem extends StatelessWidget {
                     Expanded(child: Text(orderModel.pOServiceId.toString(),style: TextStyle(fontSize:12.5.sp,fontWeight: FontWeight.w500,height: 1.5),)),
                   ],
                 ),),
-                _statusBadge(orderModel.status)
+                _statusBadge(orderModel.status??"")
             ],),
             SizedBox(height: 1.h,),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: 12.w,),
 
                 SvgPicture.asset(AppImages.ORDERS_LIST_ITEM_NAME_IC,width:5.w,),
                 SizedBox(width: 2.w,),
                 Expanded(child:
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(orderModel.pOService.title,style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500),),
-                  ],
-                ),),
+                Text(orderModel.pOService==null?"":orderModel.pOService!.title??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500,height: 1),),),
               ],),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,12 +69,7 @@ class OrderListItem extends StatelessWidget {
                 SvgPicture.asset(AppImages.ORDERS_LIST_ITEM_DATE_IC,width:5.w,),
                 SizedBox(width: 2.w,),
                 Expanded(child:
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(orderModel.date,style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500),),
-                  ],
-                ),),
+                Text(orderModel.date??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500),),),
               ],),
 
 

@@ -47,7 +47,7 @@ class PoDetailsDataModel {
   final int? closeReasonId;
   //final CloseReasonText closeReasonText;
   final dynamic clientAddress;
-  final IsOpenPo? isOpenPo;
+  final String? isOpenPo;
   final String? status;
   final dynamic googleMapLink;
   final String? termsConditions;
@@ -80,12 +80,12 @@ class PoDetailsDataModel {
     closeReasonId: json["close_reason_id"]??0,
     //closeReasonText: closeReasonTextValues.map[json["close_reason_text"]??""]!,
     clientAddress: json["client_address"],
-    isOpenPo: isOpenPoValues.map[json["is_open_po"]]!,
+    isOpenPo: json["is_open_po"]??"",
     status: json["status"]??"",
     googleMapLink: json["google_map_link"]??"",
     termsConditions: json["terms_conditions"],
     closeReason: json["close_reason"]!=null?UnitOfMeasureClass.fromJson(json["close_reason"]):null,
-    orders: List<Order>.from(json["orders"].map((x) => Order.fromJson(x))),
+    orders: json["orders"]==null?[]:List<Order>.from(json["orders"].map((x) => Order.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -112,12 +112,12 @@ class UnitOfMeasureClass {
   final String nameEn;
   final dynamic sort;
   final String isDefault;
-  final UnitOfMeasureStatus status;
+  final String status;
   final dynamic hasOther;
   final int parentId;
-  final dynamic deletedAt;
+  final String deletedAt;
   final String createdAt;
-  final DateTime updatedAt;
+  final String updatedAt;
 
   UnitOfMeasureClass({
     required this.id,
@@ -134,17 +134,17 @@ class UnitOfMeasureClass {
   });
 
   factory UnitOfMeasureClass.fromJson(Map<String, dynamic> json) => UnitOfMeasureClass(
-    id: json["id"],
-    nameAr: json["name_ar"],
-    nameEn: json["name_en"],
-    sort: json["sort"],
-    isDefault: json["is_default"],
-    status: unitOfMeasureStatusValues.map[json["status"]]!,
-    hasOther: json["has_other"],
-    parentId: json["parent_id"],
-    deletedAt: json["deleted_at"],
-    createdAt: json["created_at"],
-    updatedAt: DateTime.parse(json["updated_at"]),
+    id: json["id"]??0,
+    nameAr: json["name_ar"]??"",
+    nameEn: json["name_en"]??"",
+    sort: json["sort"]??"",
+    isDefault: json["is_default"]??"",
+    status: json["status"]??"",
+    hasOther: json["has_other"]??"",
+    parentId: json["parent_id"]??0,
+    deletedAt: json["deleted_at"]??"",
+    createdAt: json["created_at"]??"",
+    updatedAt: json["updated_at"]??"",
   );
 
   Map<String, dynamic> toJson() => {
@@ -153,12 +153,12 @@ class UnitOfMeasureClass {
     "name_en": nameEn,
     "sort": sort,
     "is_default": isDefault,
-    "status": unitOfMeasureStatusValues.reverse[status],
+    "status": status,
     "has_other": hasOther,
     "parent_id": parentId,
     "deleted_at": deletedAt,
     "created_at": createdAt,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt,
   };
 }
 
@@ -253,10 +253,10 @@ class Order {
     closeReasonText: json["close_reason_text"],
     po: PoClass.fromJson(json["po"]),
     client: json["client"] == null ? null : Employee.fromJson(json["client"]),
-    pOService: POService.fromJson(json["p_o_service"]),
-    vehicle: Vehicle.fromJson(json["vehicle"]),
-    employee: Employee.fromJson(json["employee"]),
-    closeReason: PoClass.fromJson(json["close_reason"]),
+    pOService: POService.fromJson(json["p_o_service"]??{}),
+    vehicle: Vehicle.fromJson(json["vehicle"]??{}),
+    employee: Employee.fromJson(json["employee"]??{}),
+    closeReason: PoClass.fromJson(json["close_reason"]??{}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -512,7 +512,7 @@ class POService {
   final int qty;
   final int usedQty;
   final int price;
-  final UnitOfMeasureStatus status;
+  final String status;
   final int totalPrice;
   final int unitOfMeasureId;
   final int durationSuffixId;
@@ -543,23 +543,23 @@ class POService {
   });
 
   factory POService.fromJson(Map<String, dynamic> json) => POService(
-    id: json["id"],
-    serviceId: json["service_id"],
-    title: json["title"],
-    description: json["description"],
-    duration: json["duration"],
-    qty: json["qty"],
-    usedQty: json["used_qty"],
-    price: json["price"],
-    status: unitOfMeasureStatusValues.map[json["status"]]!,
-    totalPrice: json["total_price"],
-    unitOfMeasureId: json["unit_of_measure_id"],
-    durationSuffixId: json["duration_suffix_id"],
-    poId: json["po_id"],
-    unitOfMeasure: UnitOfMeasureClass.fromJson(json["unit_of_measure"]),
-    durationSuffix: json["duration_suffix"],
-    po: Po.fromJson(json["po"]),
-    service: Service.fromJson(json["service"]),
+    id: json["id"]??0,
+    serviceId: json["service_id"]??0,
+    title: json["title"]??"",
+    description: json["description"]??"",
+    duration: json["duration"]??0,
+    qty: json["qty"]??0,
+    usedQty: json["used_qty"]??0,
+    price: json["price"]??0,
+    status: json["status"]??"",
+    totalPrice: json["total_price"]??0,
+    unitOfMeasureId: json["unit_of_measure_id"]??0,
+    durationSuffixId: json["duration_suffix_id"]??0,
+    poId: json["po_id"]??0,
+    unitOfMeasure: UnitOfMeasureClass.fromJson(json["unit_of_measure"]??{}),
+    durationSuffix: json["duration_suffix"]??"",
+    po: Po.fromJson(json["po"]??{}),
+    service: Service.fromJson(json["service"]??{}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -603,7 +603,7 @@ class Po {
   });
 
   factory Po.fromJson(Map<String, dynamic> json) => Po(
-    id: json["id"],
+    id: json["id"]??0,
     poNumber: json["po_number"]??"",
     poValue: json["po_value"]??0,
     status: json["status"]??"",
@@ -627,7 +627,7 @@ class Service {
   final int id;
   final String name;
   final String description;
-  final UnitOfMeasureStatus status;
+  final String status;
   final int typeId;
   final Type type;
 
@@ -641,12 +641,12 @@ class Service {
   });
 
   factory Service.fromJson(Map<String, dynamic> json) => Service(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    status: unitOfMeasureStatusValues.map[json["status"]]!,
-    typeId: json["type_id"],
-    type: Type.fromJson(json["type"]),
+    id: json["id"]??0,
+    name: json["name"]??"",
+    description: json["description"]??"",
+    status: json["status"]??"",
+    typeId: json["type_id"]??0,
+    type: Type.fromJson(json["type"]??{}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -669,8 +669,8 @@ class Type {
   });
 
   factory Type.fromJson(Map<String, dynamic> json) => Type(
-    nameAr: json["name_ar"],
-    nameEn: json["name_en"],
+    nameAr: json["name_ar"]??"",
+    nameEn: json["name_en"]??"",
   );
 
   Map<String, dynamic> toJson() => {

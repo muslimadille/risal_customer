@@ -6,12 +6,12 @@ import 'package:risal_customer/features/pos/model/pos_list_model.dart';
 
 OrdersListModel ordersListModelFromJson(String str) => OrdersListModel.fromJson(json.decode(str));
 
-String ordersListModelToJson(OrdersListModel data) => json.encode(data.toJson());
+String? ordersListModelToJson(OrdersListModel data) => json.encode(data.toJson());
 
 class OrdersListModel {
-  final int code;
+  final int? code;
   final bool error;
-  final String message;
+  final String? message;
   final List<OrderModel> payload;
 
   OrdersListModel({
@@ -21,14 +21,14 @@ class OrdersListModel {
     required this.payload,
   });
 
-  factory OrdersListModel.fromJson(Map<String, dynamic> json) => OrdersListModel(
+  factory OrdersListModel.fromJson(Map<String?, dynamic> json) => OrdersListModel(
     code: json["code"],
     error: json["error"],
     message: json["message"],
     payload: List<OrderModel>.from(json["payload"].map((x) => OrderModel.fromJson(x))),
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "code": code,
     "error": error,
     "message": message,
@@ -37,25 +37,25 @@ class OrdersListModel {
 }
 
 class OrderModel {
-  final int id;
-  final int poId;
-  final int clientId;
-  final int pOServiceId;
-  final int vehicleId;
-  final int employeeId;
+  final int? id;
+  final int? poId;
+  final int? clientId;
+  final int? pOServiceId;
+  final int? vehicleId;
+  final int? employeeId;
   final dynamic closeReasonId;
   final dynamic order;
-  final int qty;
-  final String date;
-  final String status;
-  final String employeeStatus;
+  final int? qty;
+  final String? date;
+  final String? status;
+  final String? employeeStatus;
   final dynamic closeReasonText;
-  final CloseReason po;
-  final Client client;
-  final POService pOService;
-  final Vehicle vehicle;
-  final Client employee;
-  final CloseReason closeReason;
+  final CloseReason? po;
+  final Client? client;
+  final POService? pOService;
+  final Vehicle? vehicle;
+  final Client? employee;
+  final CloseReason? closeReason;
 
   OrderModel({
     required this.id,
@@ -79,7 +79,7 @@ class OrderModel {
     required this.closeReason,
   });
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
+  factory OrderModel.fromJson(Map<String?, dynamic> json) => OrderModel(
     id: json["id"],
     poId: json["po_id"],
     clientId: json["client_id"],
@@ -93,15 +93,15 @@ class OrderModel {
     status: json["status"],
     employeeStatus: json["employee_status"],
     closeReasonText: json["close_reason_text"],
-    po: CloseReason.fromJson(json["po"]),
-    client: Client.fromJson(json["client"]),
-    pOService: POService.fromJson(json["p_o_service"]),
-    vehicle: Vehicle.fromJson(json["vehicle"]),
-    employee: Client.fromJson(json["employee"]),
-    closeReason: CloseReason.fromJson(json["close_reason"]),
+    po: CloseReason.fromJson(json["po"]??{}),
+    client: Client.fromJson(json["client"]??{}),
+    pOService: POService.fromJson(json["p_o_service"]??{}),
+    vehicle: Vehicle.fromJson(json["vehicle"]??{}),
+    employee: Client.fromJson(json["employee"]??{}),
+    closeReason: CloseReason.fromJson(json["close_reason"]??{}),
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "po_id": poId,
     "client_id": clientId,
@@ -115,22 +115,22 @@ class OrderModel {
     "status": status,
     "employee_status": employeeStatus,
     "close_reason_text": closeReasonText,
-    "po": po.toJson(),
-    "client": client.toJson(),
-    "p_o_service": pOService.toJson(),
-    "vehicle": vehicle.toJson(),
-    "employee": employee.toJson(),
-    "close_reason": closeReason.toJson(),
+    "po": po!.toJson(),
+    "client": client!.toJson(),
+    "p_o_service": pOService!.toJson(),
+    "vehicle": vehicle!.toJson(),
+    "employee": employee!.toJson(),
+    "close_reason": closeReason!.toJson(),
   };
 }
 
 class Client {
-  final int id;
-  final String name;
-  final String status;
-  final String draft;
-  final String email;
-  final String phone;
+  final int? id;
+  final String? name;
+  final String? status;
+  final String? draft;
+  final String? email;
+  final String? phone;
   final String? empNumber;
   final String? cr;
   final String? department;
@@ -141,13 +141,13 @@ class Client {
   final String? risalSpPersonPhone;
   final String? risalSpPersonEmail;
   final dynamic emailVerifiedAt;
-  final String role;
+  final String? role;
   final dynamic deletedAt;
-  final String createdAt;
+  final String? createdAt;
   final DateTime updatedAt;
   final int? otp;
-  final int sendMail;
-  final int firstLogin;
+  final int? sendMail;
+  final int? firstLogin;
   final dynamic apiToken;
 
   Client({
@@ -177,7 +177,7 @@ class Client {
     required this.apiToken,
   });
 
-  factory Client.fromJson(Map<String, dynamic> json) => Client(
+  factory Client.fromJson(Map<String?, dynamic> json) => Client(
     id: json["id"],
     name: json["name"],
     status: json["status"],
@@ -204,7 +204,7 @@ class Client {
     apiToken: json["api_token"],
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "name": name,
     "status": status,
@@ -224,7 +224,7 @@ class Client {
     "role": role,
     "deleted_at": deletedAt,
     "created_at": createdAt,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt,
     "otp": otp,
     "send_mail": sendMail,
     "first_login": firstLogin,
@@ -233,31 +233,31 @@ class Client {
 }
 
 class CloseReason {
-  final int id;
-  final String poNumber;
-  final String jobNumber;
-  final int userId;
-  final int adminId;
-  final String projectName;
-  final String iqNumber;
-  final int poValue;
-  final int downPaymentValue;
+  final int? id;
+  final String? poNumber;
+  final String? jobNumber;
+  final int? userId;
+  final int? adminId;
+  final String? projectName;
+  final String? iqNumber;
+  final int? poValue;
+  final int? downPaymentValue;
   final dynamic closeReasonId;
-  final String termsConditions;
+  final String? termsConditions;
   final dynamic closeReasonText;
-  final String statusId;
+  final String? statusId;
   final dynamic order;
-  final String isOpenPo;
-  final String isAdvancedPayment;
-  final String status;
-  final String draft;
+  final String? isOpenPo;
+  final String? isAdvancedPayment;
+  final String? status;
+  final String? draft;
   final dynamic deletedAt;
-  final String createdAt;
+  final String? createdAt;
   final DateTime updatedAt;
-  final int areaId;
-  final String clientAddress;
-  final String googleMapLink;
-  final int isRequested;
+  final int? areaId;
+  final String? clientAddress;
+  final String? googleMapLink;
+  final int? isRequested;
 
   CloseReason({
     required this.id,
@@ -287,7 +287,7 @@ class CloseReason {
     required this.isRequested,
   });
 
-  factory CloseReason.fromJson(Map<String, dynamic> json) => CloseReason(
+  factory CloseReason.fromJson(Map<String?, dynamic> json) => CloseReason(
     id: json["id"],
     poNumber: json["po_number"],
     jobNumber: json["job_number"],
@@ -315,7 +315,7 @@ class CloseReason {
     isRequested: json["is_requested"],
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "po_number": poNumber,
     "job_number": jobNumber,
@@ -336,7 +336,7 @@ class CloseReason {
     "draft": draft,
     "deleted_at": deletedAt,
     "created_at": createdAt,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt,
     "area_id": areaId,
     "client_address": clientAddress,
     "google_map_link": googleMapLink,
@@ -345,19 +345,19 @@ class CloseReason {
 }
 
 class POService {
-  final int id;
-  final int serviceId;
-  final String title;
-  final String description;
-  final int duration;
-  final int qty;
-  final int usedQty;
-  final int price;
-  final String status;
-  final int totalPrice;
-  final int unitOfMeasureId;
-  final int durationSuffixId;
-  final int poId;
+  final int? id;
+  final int? serviceId;
+  final String? title;
+  final String? description;
+  final int? duration;
+  final int? qty;
+  final int? usedQty;
+  final int? price;
+  final String? status;
+  final int? totalPrice;
+  final int? unitOfMeasureId;
+  final int? durationSuffixId;
+  final int? poId;
   final UnitOfMeasure unitOfMeasure;
   final dynamic durationSuffix;
   final PoModel po;
@@ -383,7 +383,7 @@ class POService {
     required this.service,
   });
 
-  factory POService.fromJson(Map<String, dynamic> json) => POService(
+  factory POService.fromJson(Map<String?, dynamic> json) => POService(
     id: json["id"],
     serviceId: json["service_id"],
     title: json["title"],
@@ -397,13 +397,13 @@ class POService {
     unitOfMeasureId: json["unit_of_measure_id"],
     durationSuffixId: json["duration_suffix_id"],
     poId: json["po_id"],
-    unitOfMeasure: UnitOfMeasure.fromJson(json["unit_of_measure"]),
+    unitOfMeasure: UnitOfMeasure.fromJson(json["unit_of_measure"]??{}),
     durationSuffix: json["duration_suffix"],
-    po: PoModel.fromJson(json["po"]),
-    service: Service.fromJson(json["service"]),
+    po: PoModel.fromJson(json["po"]??{}),
+    service: Service.fromJson(json["service"]??{}),
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "service_id": serviceId,
     "title": title,
@@ -427,11 +427,11 @@ class POService {
 
 
 class Service {
-  final int id;
-  final String name;
-  final String description;
-  final String status;
-  final int typeId;
+  final int? id;
+  final String? name;
+  final String? description;
+  final String? status;
+  final int? typeId;
   final Type type;
 
   Service({
@@ -443,16 +443,16 @@ class Service {
     required this.type,
   });
 
-  factory Service.fromJson(Map<String, dynamic> json) => Service(
+  factory Service.fromJson(Map<String?, dynamic> json) => Service(
     id: json["id"],
     name: json["name"],
     description: json["description"],
     status: json["status"],
     typeId: json["type_id"],
-    type: Type.fromJson(json["type"]),
+    type: Type.fromJson(json["type"]??{}),
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "name": name,
     "description": description,
@@ -463,37 +463,37 @@ class Service {
 }
 
 class Type {
-  final String nameAr;
-  final String nameEn;
+  final String? nameAr;
+  final String? nameEn;
 
   Type({
     required this.nameAr,
     required this.nameEn,
   });
 
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
+  factory Type.fromJson(Map<String?, dynamic> json) => Type(
     nameAr: json["name_ar"],
     nameEn: json["name_en"],
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "name_ar": nameAr,
     "name_en": nameEn,
   };
 }
 
 class UnitOfMeasure {
-  final int id;
-  final String nameAr;
-  final String nameEn;
+  final int? id;
+  final String? nameAr;
+  final String? nameEn;
   final dynamic sort;
-  final String isDefault;
-  final String status;
+  final String? isDefault;
+  final String? status;
   final dynamic hasOther;
-  final int parentId;
+  final int? parentId;
   final dynamic deletedAt;
-  final String createdAt;
-  final DateTime updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   UnitOfMeasure({
     required this.id,
@@ -509,7 +509,7 @@ class UnitOfMeasure {
     required this.updatedAt,
   });
 
-  factory UnitOfMeasure.fromJson(Map<String, dynamic> json) => UnitOfMeasure(
+  factory UnitOfMeasure.fromJson(Map<String?, dynamic> json) => UnitOfMeasure(
     id: json["id"],
     nameAr: json["name_ar"],
     nameEn: json["name_en"],
@@ -520,10 +520,10 @@ class UnitOfMeasure {
     parentId: json["parent_id"],
     deletedAt: json["deleted_at"],
     createdAt: json["created_at"],
-    updatedAt: DateTime.parse(json["updated_at"]),
+    updatedAt: json["updated_at"]??"",
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "name_ar": nameAr,
     "name_en": nameEn,
@@ -534,18 +534,18 @@ class UnitOfMeasure {
     "parent_id": parentId,
     "deleted_at": deletedAt,
     "created_at": createdAt,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt ,
   };
 }
 
 class Vehicle {
-  final int id;
-  final String number;
+  final int? id;
+  final String? number;
   final dynamic order;
-  final String status;
-  final String draft;
+  final String? status;
+  final String? draft;
   final dynamic deletedAt;
-  final String createdAt;
+  final String? createdAt;
   final DateTime updatedAt;
 
   Vehicle({
@@ -559,7 +559,7 @@ class Vehicle {
     required this.updatedAt,
   });
 
-  factory Vehicle.fromJson(Map<String, dynamic> json) => Vehicle(
+  factory Vehicle.fromJson(Map<String?, dynamic> json) => Vehicle(
     id: json["id"],
     number: json["number"],
     order: json["order"],
@@ -570,7 +570,7 @@ class Vehicle {
     updatedAt: DateTime.parse(json["updated_at"]),
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
     "id": id,
     "number": number,
     "order": order,
@@ -578,6 +578,6 @@ class Vehicle {
     "draft": draft,
     "deleted_at": deletedAt,
     "created_at": createdAt,
-    "updated_at": updatedAt.toIso8601String(),
+    "updated_at": updatedAt ,
   };
 }

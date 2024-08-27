@@ -43,14 +43,14 @@ mixin LoginHelper{
   onLoginClick()async{
     try{
       final response=await authRepo.login(
-          password: passwordController.text,
-          email: emailController.text);
+          password: "password",
+          email: "abdullahfouad4@gmail.com");
       LoginModel loginModel = loginModelFromJson(jsonEncode(response.data));
       AppData.user_name=loginModel.payload.name;
       AppData.user_name=loginModel.payload.phone;
       LocalStorage().putInBox(key: StorageKeys.TOKEN, value: loginModel.payload.apiToken);
       NetworkRequest().dio.options.headers['Authorization'] = "Bearer ${loginModel.payload.apiToken}";
-        if(loginModel.payload.firstLogin==1){
+        if(loginModel.payload.firstLogin==0){
           AppNavigator().push(routeName: AppRoutes.CHANGE_PASSWORD_SCREEN_ROUTE);
         }else{
           AppNavigator().pushAndRemoveAll(routeName: AppRoutes.HOME_TABS_SCREEN_ROUTE);

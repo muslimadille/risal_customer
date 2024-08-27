@@ -10,8 +10,6 @@ import 'package:risal_customer/common/widgets/custom_btn.dart';
 import 'package:risal_customer/features/orders/model/order_details_model.dart';
 import 'package:risal_customer/features/orders/view/items/recieve_order_bttom_sheet.dart';
 import 'package:risal_customer/features/orders/viewModel/order_details_helper.dart';
-import 'package:risal_customer/features/pos/model/po_details_model.dart';
-import 'package:risal_customer/features/pos/viewModel/po_details_helper.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../more/view/items/more_wite_container.dart';
@@ -50,6 +48,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                         child:
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             InkWell(
                                 onTap: (){
@@ -58,14 +57,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                                 child: SvgPicture.asset(AppImages.BACK_BTN_IC,matchTextDirection: true,)),
                           ],
                         )),
-                    Expanded(flex: 2,child: Center(child: Text("#PO:${snapshot.data!.pOService.po.poNumber}"
-                      ,style: TextStyle(fontSize: 16.sp,),))),
+                    Expanded(flex: 2,child: Center(child: Text("#PO:${snapshot.data!.pOService!.po!.poNumber}"
+                      ,style: TextStyle(fontSize: 16.sp,height: 1),))),
                     Expanded(
                       flex: 1,
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.end,
                         children: [
-                          _statusBadge(snapshot.data!.status),
+                          _statusBadge(snapshot.data!.status??"active"),
                         ],
                       ),
                     )
@@ -76,14 +75,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                     SizedBox(height: 1.h,),
                     MoreWhiteContainer(
                       margin: EdgeInsets.zero,
-                      body:item(icon: AppImages.SERVICE_QUANTITY_IC,title:"#PO:${snapshot.data!.pOService.po.poNumber}") ,),
+                      body:item(icon: AppImages.SERVICE_QUANTITY_IC,title:"#PO:${snapshot.data!.pOService!.po!.poNumber}") ,),
                     SizedBox(height: 2.h,),
                     ///==========================
                     Text("Delivery Details",style: TextStyle(fontSize: 14.sp,),),
                     SizedBox(height: 1.h,),
                     MoreWhiteContainer(
                       margin: EdgeInsets.zero,
-                      body:item(icon: AppImages.PO_DETAILS_ADDRESS_IC,title:snapshot.data!.po.clientAddress??"No_delevery_address".translate) ,),
+                      body:item(icon: AppImages.PO_DETAILS_ADDRESS_IC,title:snapshot.data!.po!.clientAddress??"No_delevery_address".translate) ,),
                     SizedBox(height: 2.h,),
                     ///==========================
                     Text("Delivery Service Details",style: TextStyle(fontSize: 14.sp,),),
@@ -95,9 +94,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                             MoreWhiteContainer(
                               margin: EdgeInsets.zero,
                               body:Column(children: [
-                                item(icon: AppImages.SERVICE_NAME_IC,title: snapshot.data!.pOService.title),
-                                item(icon: AppImages.SERVICE_QUANTITY_IC,title: "quantity".translate+snapshot.data!.pOService.qty.toString()),
-                                item(icon: AppImages.SERVICE_DURATION_IC,title: "duration".translate+snapshot.data!.pOService.duration.toString())
+                                item(icon: AppImages.SERVICE_NAME_IC,title: snapshot.data!.pOService!.title??""),
+                                item(icon: AppImages.SERVICE_QUANTITY_IC,title: "quantity".translate+((snapshot.data!.pOService!.qty??0).toString())),
+                                item(icon: AppImages.SERVICE_DURATION_IC,title: "duration".translate+(snapshot.data!.pOService!.duration??""))
                               ],) ,),
                             SizedBox(height:1.h)
                           ],
