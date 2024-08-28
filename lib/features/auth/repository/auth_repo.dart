@@ -29,4 +29,26 @@ class AuthRepo{
       rethrow;
     }
   }
+  Future<Response>editPassword({required String oldPassword,required String newPassword,required String confirmPassword})async{
+    try {
+      final response = await NetworkRequest().sendAppRequest(
+          networkParameters: NetworkRequestModel(
+            apiCode:ApiCodes.UPDATE_PASSWORD,
+            networkType: NetworkRequestEnum.post,
+            data: {
+              "old_password":oldPassword,
+              "password":newPassword,
+              "password_confirmation":confirmPassword
+            },
+            showProgress: true,
+            dismissProgress: true,
+          ),
+          exceptionParameters: const NetworkExceptionModel(
+              dismissProgress: true, showError: true));
+
+      return response;
+    } catch (error) {
+      rethrow;
+    }
+  }
 }
