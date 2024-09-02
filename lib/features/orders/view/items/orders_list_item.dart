@@ -54,7 +54,7 @@ class OrderListItem extends StatelessWidget {
                 StatusBadgeWidget(status:orderModel.generalStatus??"")
             ],),
             SizedBox(height: 1.h,),
-            Row(
+            (orderModel.pOService!=null)?Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: 12.w,),
@@ -62,8 +62,8 @@ class OrderListItem extends StatelessWidget {
                 SvgPicture.asset(AppImages.ORDERS_LIST_ITEM_NAME_IC,width:5.w,),
                 SizedBox(width: 2.w,),
                 Expanded(child:
-                Text(orderModel.service==null?"":orderModel.service!.name??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500,height: 1),),),
-              ],),
+                Text(orderModel.service==null?"":orderModel.pOService!.title??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500,height: 1),),),
+              ],):SizedBox(),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

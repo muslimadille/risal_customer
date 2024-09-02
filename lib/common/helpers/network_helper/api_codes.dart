@@ -27,6 +27,8 @@ class ApiCodes {
   static const String REVIEVE_ORDER='user/receive/';
   static const String REPORT_ISSUE="user/report";
   /// Authers
+  static const String GET_ALL_SERVICES="api/services";
+
 
 
 

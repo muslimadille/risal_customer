@@ -48,6 +48,8 @@ class OrderModel {
   final String?duration;
   final PoModel?po;
   final String?generalStatus;
+  final POService? pOService;
+
 
 
   OrderModel({
@@ -67,7 +69,8 @@ class OrderModel {
     required this.service,
     required this.duration,
     required this.po,
-    required this.generalStatus
+    required this.generalStatus,
+    required this.pOService
   });
 
   factory OrderModel.fromJson(Map<String?, dynamic> json) => OrderModel(
@@ -87,7 +90,8 @@ class OrderModel {
     service: Service.fromJson(json["service"]??{}),
     duration: json["duration"].toString(),
     po: PoModel.fromJson(json["po"]),
-    generalStatus: json["general_status"]
+    generalStatus: json["general_status"],
+    pOService: json["p_o_service"]==null?null:POService.fromJson(json["p_o_service"])
   );
 
 }

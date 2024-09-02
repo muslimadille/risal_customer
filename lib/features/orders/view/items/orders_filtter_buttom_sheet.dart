@@ -7,7 +7,7 @@ import 'package:risal_customer/common/widgets/custom_dropdown_widget.dart';
 import 'package:sizer/sizer.dart';
 
 class OrdersFiltterBottomSheet extends StatefulWidget {
-  final Function(String? value) onDone;
+  final Function(Map<String,dynamic>? value) onDone;
   String? selectedValue;
 
 
@@ -21,7 +21,7 @@ class OrdersFiltterBottomSheet extends StatefulWidget {
 }
 
 class _OrdersFiltterBottomSheetState extends State<OrdersFiltterBottomSheet> {
-  List<CustomDropDownModel> options=[
+  List<CustomDropDownModel> statusOptions=[
     CustomDropDownModel(title: "active".translate,item:"active" ),
     CustomDropDownModel(title: "pending".translate,item:"pending" ),
     CustomDropDownModel(title: "closed".translate,item:"closed" )
@@ -54,7 +54,7 @@ class _OrdersFiltterBottomSheetState extends State<OrdersFiltterBottomSheet> {
                       widget.selectedValue=null;
                       setState(() {
                         AppNavigator().goBack();
-                        widget.onDone(widget.selectedValue);
+                        widget.onDone({});
                       });
                     },
                     child: Container(
@@ -84,18 +84,18 @@ class _OrdersFiltterBottomSheetState extends State<OrdersFiltterBottomSheet> {
             padding:  EdgeInsets.symmetric(horizontal:4.w),
             child: CustomDropDown(
                 title: "select_satus".translate,
-                items: options,
+                items: statusOptions,
                 onSelect: (item){
                   widget.selectedValue=item.item.toString();
                   setState(() {
                   });
-                },selectedValue:widget.selectedValue==null?null:options.singleWhere((element)=>element.item.toString()==(widget.selectedValue??""))
+                },selectedValue:widget.selectedValue==null?null:statusOptions.singleWhere((element)=>element.item.toString()==(widget.selectedValue??""))
             ),
           ),
           SizedBox(height: 3.h,),
           CustomBtn(onClick: (){
             AppNavigator().goBack();
-            widget.onDone(widget.selectedValue);
+            widget.onDone({});
           }, title: "DONE".translate)
         ],),
     );

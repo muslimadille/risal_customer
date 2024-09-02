@@ -79,6 +79,23 @@ class OrdersRepo{
       rethrow;
     }
   }
+  Future<Response>getAllServices()async{
+    try {
+      final response = await NetworkRequest().sendAppRequest(
+          networkParameters: NetworkRequestModel(
+            apiCode:ApiCodes.GET_ALL_SERVICES,
+            networkType: NetworkRequestEnum.get,
+            showProgress: true,
+            dismissProgress: true,
+          ),
+          exceptionParameters: const NetworkExceptionModel(
+              dismissProgress: true, showError: true));
+
+      return response;
+    } catch (error) {
+      rethrow;
+    }
+  }
 
 
 }

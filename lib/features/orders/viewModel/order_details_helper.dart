@@ -41,4 +41,5 @@ mixin OrderDetailsHelper{
       rethrow;
     }
   }
+
 }
