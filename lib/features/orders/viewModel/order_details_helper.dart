@@ -34,4 +34,11 @@ mixin OrderDetailsHelper{
       rethrow;
     }
   }
+  reportIssue({required  String title,required String message})async{
+    try{
+      await repo.reportIssue(title:title,message: message);
+    }catch (error) {
+      rethrow;
+    }
+  }
 }

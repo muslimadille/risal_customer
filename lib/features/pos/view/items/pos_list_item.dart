@@ -6,6 +6,8 @@ import 'package:risal_customer/common/utils/app_images.dart';
 import 'package:risal_customer/features/pos/model/pos_list_model.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../common/widgets/status_badge_widget.dart';
+
 
 class PosListItem extends StatelessWidget {
   final PoModel poModel;
@@ -37,13 +39,14 @@ class PosListItem extends StatelessWidget {
               SizedBox(width: 2.w,),
               Expanded(child:
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text("pos_num".translate,style: TextStyle(fontSize:10.5.sp),),
-                  Expanded(child: Text(poModel.poNumber,style: TextStyle(fontSize:12.5.sp,fontWeight: FontWeight.w500,height: 1.5),)),
+                  Expanded(child: Text(poModel.poNumber,maxLines: 1,style: TextStyle(fontSize:10.5.sp,fontWeight: FontWeight.w500,height: 1.5),)),
                 ],
               ),),
-              _statusBadge(poModel.status)
+              SizedBox(width: 2.w,),
+              StatusBadgeWidget(status:poModel.status)
           ],),
           SizedBox(height: 1.h,),
           Row(
@@ -91,15 +94,5 @@ class PosListItem extends StatelessWidget {
       ),
     );
   }
-  Widget _statusBadge(String status){
-    bool isActive=status=="active";
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal:2.w),
-      decoration: BoxDecoration(
-        color: status=="active"?AppColors.BLUE_LGIHT:AppColors.GREEN_LGIHT,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Center(child: Text((isActive?"active":"delivered").translate,style:TextStyle(fontSize: 10.sp,color: isActive?AppColors.BLUE:AppColors.GREEN,height:1.9),),),
-    );
-  }
+
 }

@@ -42,6 +42,7 @@ class PoModel {
   final String isAdvancedPayment;
   final num downPaymentValue;
 
+
   PoModel({
     required this.id,
     required this.poNumber,

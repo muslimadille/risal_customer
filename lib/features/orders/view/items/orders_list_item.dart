@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:risal_customer/common/extentions/translat_extention.dart';
 import 'package:risal_customer/common/utils/app_colors.dart';
 import 'package:risal_customer/common/utils/app_images.dart';
+import 'package:risal_customer/common/widgets/status_badge_widget.dart';
 import 'package:risal_customer/features/orders/model/orders_list_model.dart';
 import 'package:risal_customer/features/pos/model/pos_list_model.dart';
 import 'package:sizer/sizer.dart';
@@ -45,11 +46,12 @@ class OrderListItem extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("pos_num".translate,style: TextStyle(fontSize:10.5.sp),),
-                    Expanded(child: Text(orderModel.pOServiceId.toString(),style: TextStyle(fontSize:12.5.sp,fontWeight: FontWeight.w500,height: 1.5),)),
+                    Text("order_num".translate,style: TextStyle(fontSize:10.5.sp),),
+                    Expanded(child: Text(orderModel.id
+                        .toString(),maxLines: 1,style: TextStyle(fontSize:12.5.sp,fontWeight: FontWeight.w500,height: 1.5),)),
                   ],
                 ),),
-                _statusBadge(orderModel.status??"")
+                StatusBadgeWidget(status:orderModel.generalStatus??"")
             ],),
             SizedBox(height: 1.h,),
             Row(
@@ -60,7 +62,7 @@ class OrderListItem extends StatelessWidget {
                 SvgPicture.asset(AppImages.ORDERS_LIST_ITEM_NAME_IC,width:5.w,),
                 SizedBox(width: 2.w,),
                 Expanded(child:
-                Text(orderModel.pOService==null?"":orderModel.pOService!.title??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500,height: 1),),),
+                Text(orderModel.service==null?"":orderModel.service!.name??"",style: TextStyle(fontSize:11.sp,fontWeight:FontWeight.w500,height: 1),),),
               ],),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,17 +78,6 @@ class OrderListItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-  Widget _statusBadge(String status){
-    bool isActive=status=="active";
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal:2.w),
-      decoration: BoxDecoration(
-        color: status=="active"?AppColors.BLUE_LGIHT:AppColors.GREEN_LGIHT,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Center(child: Text((isActive?"active":"delivered").translate,style:TextStyle(fontSize: 10.sp,color: isActive?AppColors.BLUE:AppColors.GREEN,height:1.9),),),
     );
   }
 }

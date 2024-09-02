@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:risal_customer/common/helpers/app_localization.dart';
 import 'package:risal_customer/common/helpers/network_helper/api_codes.dart';
 import '../../widgets/custom_snakbar.dart';
 import 'models/network_exception_model.dart';
@@ -37,7 +38,7 @@ class NetworkRequest with NetworkExceptionHandler {
       {required NetworkRequestModel networkParameters,
       required NetworkExceptionModel exceptionParameters}) async {
 
-    //dio.options.headers['Accept-Language'] = LocalListener().isEnglishLang ? "en-US" : "ar-SA";
+    //dio.options.headers['App-Language'] = isArabic ? "ar" : "en";
 
     if (canMakeRequest) {
       if (networkParameters.showProgress??false) {

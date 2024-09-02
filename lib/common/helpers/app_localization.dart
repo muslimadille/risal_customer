@@ -81,6 +81,9 @@ class AppLocalization{
     "pos_screen_title":"Purchase Orders",
     "pos_num":"# PO_Num : ",
     "active":"Active",
+    "pending":"Pending",
+    "closed":"Closed",
+
     "delivered":"Delivered",
     "Total":"Total: ",
     "SAR":"SAR",
@@ -115,10 +118,14 @@ class AppLocalization{
     "report_issue_btn":"Report an issue",
     "confirm":"Confirm",
     "confirm_title":"Confirm your delivery note",
-    "confirm_subtitle":"Please confirm that you received the order"
-
-
-
+    "confirm_subtitle":"Please confirm that you received the order",
+    "Hours":" Hours",
+    "Delivery Details":"Delivery Details",
+    "Delivery Service Details":"Delivery Service Details",
+    "Payment Details":"Payment Details",
+    "order_num":"Order_Num: ",
+    "report_issue_title":"Report your issue",
+    "report_issue_subtitle":"Write your reason"
 
   };
   static const Map<String, dynamic> AR = {
@@ -176,7 +183,16 @@ class AppLocalization{
     "report_issue_btn":"الابلاغ عن مشكلة",
     "confirm":"تأكيد",
     "confirm_title":"تأكيد التوصيل",
-    "confirm_subtitle":"الرجاء تأكيد استلام الطلب"
-
+    "confirm_subtitle":"الرجاء تأكيد استلام الطلب",
+    "Hours":" ساعة",
+  "Delivery Details": "تفاصيل التسليم",
+  "Delivery Service Details": "تفاصيل خدمة التسليم",
+  "Payment Details": "تفاصيل الدفع",
+    "no_pos_found":"لا يوجد لديك طلبات شراء",
+    "pending":"معلق",
+    "closed":"مغلق",
+    "order_num":"رقم الطلب: ",
+    "report_issue_title":"أبلغ عن مشكلتك",
+    "report_issue_subtitle":"اكتب سببك"
   };
 }

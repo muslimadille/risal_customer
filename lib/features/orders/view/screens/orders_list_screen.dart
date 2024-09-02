@@ -5,6 +5,7 @@ import 'package:risal_customer/common/helpers/app_navigator.dart';
 import 'package:risal_customer/common/utils/app_routes.dart';
 import 'package:risal_customer/common/widgets/search_widget.dart';
 import 'package:risal_customer/features/orders/model/orders_list_model.dart';
+import 'package:risal_customer/features/orders/view/items/orders_filtter_buttom_sheet.dart';
 import 'package:risal_customer/features/orders/view/items/orders_list_item.dart';
 import 'package:risal_customer/features/orders/viewModel/orders_list_helper.dart';
 import 'package:risal_customer/features/pos/model/pos_list_model.dart';
@@ -50,29 +51,31 @@ class _OrdersListScreenState extends State<OrdersListScreen>with OrdersListHelpe
                 Expanded(
                   child: SearchWidget(onClick: (value)async{
                     currentPage=1;
-                    posListFilters["po_number"]=value;
+                    posListFilters["order_id"]=value;
                     await getPosList();
                   },),
                 ),
                 SizedBox(width: 2.w,),
                 FiltterBtnWidget(onClick: (){
-                  /*CustomBottomSheet().displayModalBottomSheet(widget: PosFiltterButtomSheet(onDone: (value)async{
+                  CustomBottomSheet().displayModalBottomSheet(widget: OrdersFiltterBottomSheet(onDone: (value)async{
                     currentPage=1;
                     if(value!=null){
-                      posListFilters["status"]=value=="active".translate?"active":"closed";
+                      posListFilters["status"]=value;
                   }else {
                       posListFilters["status"]=null;
                     }
                     await getPosList();
-                  },selectedValue: posListFilters["status"],));*/
+                  },selectedValue: posListFilters["status"],));
                 },)
               ],
             ),
           ),
+          SizedBox(height: 1.h,),
           Expanded(child: StreamBuilder<List<OrderModel>>(
               stream: posListState.stream,
               builder:(context,snapshot) {
               return ListView.separated(
+                padding: EdgeInsets.symmetric(vertical: 2.h),
                 itemCount:posList.length,
                   separatorBuilder: (ctx,index){
                   return SizedBox(height: 1.h,);

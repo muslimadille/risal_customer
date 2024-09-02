@@ -58,6 +58,27 @@ class OrdersRepo{
       rethrow;
     }
   }
+  Future<Response>reportIssue({required  String title,required  message})async{
+    try {
+      final response = await NetworkRequest().sendAppRequest(
+          networkParameters: NetworkRequestModel(
+            apiCode:ApiCodes.REPORT_ISSUE,
+            networkType: NetworkRequestEnum.get,
+            data: {
+              "title":title,
+              "message":message
+            },
+            showProgress: true,
+            dismissProgress: true,
+          ),
+          exceptionParameters: const NetworkExceptionModel(
+              dismissProgress: true, showError: true));
+
+      return response;
+    } catch (error) {
+      rethrow;
+    }
+  }
 
 
 }

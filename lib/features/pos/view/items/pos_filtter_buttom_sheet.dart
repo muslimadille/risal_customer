@@ -22,8 +22,10 @@ class PosFiltterButtomSheet extends StatefulWidget {
 
 class _PosFiltterButtomSheetState extends State<PosFiltterButtomSheet> {
   List<CustomDropDownModel> options=[
-    CustomDropDownModel(title: "active".translate,item:"active".translate ),
-    CustomDropDownModel(title: "delivered".translate,item:"delivered".translate )
+    CustomDropDownModel(title: "active".translate,item:"active" ),
+    CustomDropDownModel(title: "pending".translate,item:"pending" ),
+    CustomDropDownModel(title: "closed".translate,item:"closed" )
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -84,10 +86,10 @@ class _PosFiltterButtomSheetState extends State<PosFiltterButtomSheet> {
             title: "select_satus".translate,
             items: options,
             onSelect: (item){
-              widget.selectedValue=item.title;
+              widget.selectedValue=item.item.toString();
               setState(() {
               });
-            },selectedValue:null
+            },selectedValue:widget.selectedValue==null?null:options.singleWhere((element)=>element.item.toString()==(widget.selectedValue??""))
             ),
         ),
         SizedBox(height: 3.h,),

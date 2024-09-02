@@ -43,8 +43,8 @@ mixin LoginHelper{
   onLoginClick()async{
     try{
       final response=await authRepo.login(
-          password: "password",
-          email: "abdullahfouad4@gmail.com");
+          password:passwordController.text,
+          email: emailController.text);
       LoginModel loginModel = loginModelFromJson(jsonEncode(response.data));
       AppData.user_name=loginModel.payload.name;
       AppData.user_name=loginModel.payload.phone;

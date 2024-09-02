@@ -7,8 +7,10 @@ import 'package:risal_customer/common/utils/app_images.dart';
 import 'package:risal_customer/common/utils/app_style.dart';
 import 'package:risal_customer/common/widgets/costum_bottom_sheet.dart';
 import 'package:risal_customer/common/widgets/custom_btn.dart';
+import 'package:risal_customer/common/widgets/status_badge_widget.dart';
 import 'package:risal_customer/features/orders/model/order_details_model.dart';
 import 'package:risal_customer/features/orders/view/items/recieve_order_bttom_sheet.dart';
+import 'package:risal_customer/features/orders/view/items/report_issue_bottom_sheet.dart';
 import 'package:risal_customer/features/orders/viewModel/order_details_helper.dart';
 import 'package:sizer/sizer.dart';
 
@@ -64,7 +66,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.end,
                         children: [
-                          _statusBadge(snapshot.data!.status??"active"),
+                          StatusBadgeWidget(status:snapshot.data!.status??""),
                         ],
                       ),
                     )
@@ -85,44 +87,50 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                       body:item(icon: AppImages.PO_DETAILS_ADDRESS_IC,title:snapshot.data!.po!.clientAddress??"No_delevery_address".translate) ,),
                     SizedBox(height: 2.h,),
                     ///==========================
-                    Text("Delivery Service Details",style: TextStyle(fontSize: 14.sp,),),
-                    SizedBox(height: 1.h,),
-                    Column(
-                      children: List.generate(1,(index){
-                        return Column(
-                          children: [
-                            MoreWhiteContainer(
-                              margin: EdgeInsets.zero,
-                              body:Column(children: [
-                                item(icon: AppImages.SERVICE_NAME_IC,title: snapshot.data!.pOService!.title??""),
-                                item(icon: AppImages.SERVICE_QUANTITY_IC,title: "quantity".translate+((snapshot.data!.pOService!.qty??0).toString())),
-                                item(icon: AppImages.SERVICE_DURATION_IC,title: "duration".translate+(snapshot.data!.pOService!.duration??""))
-                              ],) ,),
-                            SizedBox(height:1.h)
-                          ],
-                        );
-                      }),
+                    ///
+                    Visibility(
+                      visible:snapshot.data!.pOService!=null ,
+                      child: Column(children: [
+                        Text("Delivery Service Details",style: TextStyle(fontSize: 14.sp,),),
+                        SizedBox(height: 1.h,),
+                        Column(
+                          children: List.generate(1,(index){
+                            return Column(
+                              children: [
+                                MoreWhiteContainer(
+                                  margin: EdgeInsets.zero,
+                                  body:Column(children: [
+                                    item(icon: AppImages.SERVICE_NAME_IC,title: snapshot.data!.pOService!.title??""),
+                                    item(icon: AppImages.SERVICE_QUANTITY_IC,title: "quantity".translate+((snapshot.data!.pOService!.qty??0).toString())),
+                                    item(icon: AppImages.SERVICE_DURATION_IC,title: "duration".translate+(snapshot.data!.pOService!.duration??0).toString())
+                                  ],) ,),
+                                SizedBox(height:1.h)
+                              ],
+                            );
+                          }),
+                        ),
+                      ],),
                     ),
 
-
-                    ///==========================
                     SizedBox(
                       height: 3.h,
                     ),
 
-
                   ],)),
-                  CustomBtn(
-                    title: 'receive_service_btn'.translate,
-                    style: AppStyle.BTN_STYLE,
-                    onClick: (){
-                      CustomBottomSheet().displayModalBottomSheet(
-                        isDismiss: true,
-                          widget: RecieveOrderBottomSheet(
-                        onDone: ()async{
-                        receiveOrder();
-                      },));
-                    },
+                  Visibility(
+                    visible: (snapshot.data!.status??"")=="pending",
+                    child: CustomBtn(
+                      title: 'receive_service_btn'.translate,
+                      style: AppStyle.BTN_STYLE,
+                      onClick: (){
+                        CustomBottomSheet().displayModalBottomSheet(
+                          isDismiss: true,
+                            widget: RecieveOrderBottomSheet(
+                          onDone: ()async{
+                          receiveOrder();
+                        },));
+                      },
+                    ),
                   ),
                   SizedBox(height: 1.h,),
                   CustomBtn(
@@ -133,7 +141,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
                         fontWeight: FontWeight.w500,
                         fontSize: 13.sp) ,
                     onClick: (){
-
+                      CustomBottomSheet().displayModalBottomSheet(
+                          isDismiss: true,
+                          widget: ReportIssueBottomSheet(onDone: ( title,message) async{
+                            await reportIssue(title: title, message: message);
+                          },
+                            ));
                     },
                   )
 
@@ -155,15 +168,5 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>with  OrderDetai
       ],);
   }
 
-  Widget _statusBadge(String status){
-    bool isActive=status=="active";
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal:2.w),
-      decoration: BoxDecoration(
-        color: status=="active"?AppColors.BLUE_LGIHT:AppColors.GREEN_LGIHT,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Center(child: Text((isActive?"active":"delivered").translate,style:TextStyle(fontSize: 10.sp,color: isActive?AppColors.BLUE:AppColors.GREEN,height:1.9),),),
-    );
-  }
+
 }

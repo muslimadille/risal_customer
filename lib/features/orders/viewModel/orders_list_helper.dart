@@ -21,8 +21,8 @@ mixin OrdersListHelper{
       "page":currentPage,
       "per_page":"20",
       "status":null,//active,closed
-      "po_number":null,
-      "is_open_po":null,//yes,no
+      "date":null,
+      "service_id":null,//yes,no
       "is_advanced_payment":null,//yes,no
     };
     posListState = StreamController<List<OrderModel>>();

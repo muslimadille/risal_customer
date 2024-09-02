@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:risal_customer/common/extentions/translat_extention.dart';
 import 'package:risal_customer/common/helpers/app_navigator.dart';
+import 'package:risal_customer/common/utils/app_images.dart';
 import 'package:risal_customer/common/utils/app_routes.dart';
+import 'package:risal_customer/common/widgets/no_data_widget.dart';
 import 'package:risal_customer/common/widgets/search_widget.dart';
 import 'package:risal_customer/features/pos/model/pos_list_model.dart';
 import 'package:risal_customer/features/pos/view/items/pos_filtter_buttom_sheet.dart';
@@ -57,7 +59,7 @@ class _PosListScreenState extends State<PosListScreen>with PosListHelper {
                   CustomBottomSheet().displayModalBottomSheet(widget: PosFiltterButtomSheet(onDone: (value)async{
                     currentPage=1;
                     if(value!=null){
-                      posListFilters["status"]=value=="active".translate?"active":"closed";
+                      posListFilters["status"]=value??"";
                   }else {
                       posListFilters["status"]=null;
                     }
@@ -70,7 +72,8 @@ class _PosListScreenState extends State<PosListScreen>with PosListHelper {
           Expanded(child: StreamBuilder<List<PoModel>>(
               stream: posListState.stream,
               builder:(context,snapshot) {
-              return ListView.separated(
+              return snapshot.hasData?
+                posList.isEmpty?NoDataWidget(title: "no_pos_found".translate, icon: AppImages.POS_TAB_IC):ListView.separated(
                 itemCount:posList.length,
                   separatorBuilder: (ctx,index){
                   return SizedBox(height: 1.h,);
@@ -81,7 +84,8 @@ class _PosListScreenState extends State<PosListScreen>with PosListHelper {
                     AppNavigator().push(routeName: AppRoutes.POS_DETAILS_SCREEN_ROUT,arguments:posList[index].id );
                   },
                     child: PosListItem(poModel:posList[index],));
-              });
+              }):
+              SizedBox();
             }
           ))
 
