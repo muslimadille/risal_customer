@@ -51,4 +51,26 @@ class AuthRepo{
       rethrow;
     }
   }
+  Future<Response>setPassword({required String newPassword,required String confirmPassword})async{
+    try {
+      final response = await NetworkRequest().sendAppRequest(
+          networkParameters: NetworkRequestModel(
+            apiCode:ApiCodes.SET_PASSWORD_API,
+            networkType: NetworkRequestEnum.post,
+            data: {
+              "password":newPassword,
+              "password_confirmation":confirmPassword
+            },
+            showProgress: true,
+            dismissProgress: true,
+          ),
+          exceptionParameters: const NetworkExceptionModel(
+              dismissProgress: true, showError: true));
+
+      return response;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
 }

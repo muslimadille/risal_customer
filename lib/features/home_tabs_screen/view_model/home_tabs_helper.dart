@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:risal_customer/features/more/view/screens/more_screen.dart';
+import 'package:risal_customer/features/orders/view/screens/requestes_screen.dart';
 import '../../orders/view/screens/orders_list_screen.dart';
 import '../../pos/view/screens/pos_list_screen.dart';
 
@@ -18,6 +19,7 @@ mixin HomeTabsHelper{
   final List<Widget> screens=[
     PosListScreen(),
     OrdersListScreen(),
+    RequestsScreen(),
     MoreScreen(),
   ];
 

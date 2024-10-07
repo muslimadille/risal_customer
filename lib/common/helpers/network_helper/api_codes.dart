@@ -26,8 +26,17 @@ class ApiCodes {
   static const String GET_ORDERS_DETAILS='user/order/';
   static const String REVIEVE_ORDER='user/receive/';
   static const String REPORT_ISSUE="user/report";
-  /// Authers
-  static const String GET_ALL_SERVICES="api/services";
+  /// AOthers
+  static const String GET_ALL_SERVICES="services";
+  /// requests
+  static const String GET_REQUESTS="user/requests";
+  static const String SET_REQUESTS="user/request";
+  static const String get_REQUEST_POS="user/posList";
+  static const String get_REQUEST_SERVICES="user/serviceList";
+
+
+
+
 
 
 

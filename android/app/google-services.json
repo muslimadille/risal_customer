@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCzM4a-_z-WdsAAz9sgWybcfY2xflrLJgY"
+          "current_key": "AIzaSyBnwWddXirDb8wtPDfv4ox3Ft8bq7XIEyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991280596030:android:7ff956599b8b9de3bcbd6f",
+        "android_client_info": {
+          "package_name": "com.risal.rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnwWddXirDb8wtPDfv4ox3Ft8bq7XIEyo"
         }
       ],
       "services": {

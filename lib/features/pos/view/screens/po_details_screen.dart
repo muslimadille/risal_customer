@@ -60,7 +60,7 @@ class _PoDetailsScreenState extends State<PoDetailsScreen>with  PoDetailsHelper 
                     Expanded(flex: 2,child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
-                      Text("#PO: "
+                      Text("pos_num".translate
                         ,style: TextStyle(fontSize: 14.sp,height: 1,fontWeight: FontWeight.w600),),
                       Expanded(
                         child: Text("${snapshot.data!.poNumber}"
@@ -80,13 +80,7 @@ class _PoDetailsScreenState extends State<PoDetailsScreen>with  PoDetailsHelper 
 
                   ],),
                 Expanded(child: ListView(children: [
-                  Text("Delivery Details".translate,style: TextStyle(fontSize: 14.sp,),),
-                  SizedBox(height: 1.h,),
-                  MoreWhiteContainer(
-                    margin: EdgeInsets.zero,
-                    body:item(icon: AppImages.PO_DETAILS_ADDRESS_IC,title:snapshot.data!.clientAddress??"No_delevery_address".translate) ,),
-                  SizedBox(height: 2.h,),
-                  ///==========================
+
                   Text("Delivery Service Details".translate,style: TextStyle(fontSize: 14.sp,),),
                   SizedBox(height: 1.h,),
                   Column(

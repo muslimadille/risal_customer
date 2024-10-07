@@ -77,7 +77,13 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> with HomeTabsHelper {
                       if(value!=2){
                         selectedIndex.value=2;
                       }
-                    }, isSelected:value==2, title:'more_tab'.translate, icon:AppImages.MORE_TAB_IC,)
+                    }, isSelected:value==2, title:'requests_tab'.translate, icon:AppImages.ORDERS_TAB_IC,),
+
+                    HomeTabItem(onClick:(){
+                      if(value!=3){
+                        selectedIndex.value=3;
+                      }
+                    }, isSelected:value==3, title:'more_tab'.translate, icon:AppImages.MORE_TAB_IC,)
                   ],
                 ),
               ),
